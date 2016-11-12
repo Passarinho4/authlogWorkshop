@@ -3,3 +3,12 @@
     text-align: center;
     margin-top:20px;
 }
+.login-container {
+    width: 100%;
+    text-align: center;
+    margin-top:50px;
+}
+.credentials-login {
+    text-align: left;
+    width: 150px;
+}

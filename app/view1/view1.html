@@ -1,1 +1,12 @@
-<p>This is the partial for view 1.</p>
+<div class="login-container">
+
+    <div class="credentials-login">
+        <label for="login">Login</label>
+        <input ng-model="vm.login" type="text" id="login">
+        <label for="password">Password</label>
+        <input ng-model="vm.password" type="text" id="password">
+        <button ng-mousedown="vm.credentialsLogin()">Log in!</button>
+    </div>
+    <div class="fb-login"></div>
+
+</div>
