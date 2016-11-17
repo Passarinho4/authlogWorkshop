@@ -10,10 +10,12 @@ angular.module('myApp.view1', ['ngRoute'])
         });
     }])
 
-    .controller('View1Ctrl', ['$http', function ($http) {
+    .controller('View1Ctrl', ['$http', "TokenStorage", function ($http, TokenStorage) {
         var vm = this;
 
         vm.credentialsLogin = credentialsLogin;
+        vm.logout = logout;
+        vm.testApi = testApi;
 
         function credentialsLogin() {
             alert("Login: " + vm.login + " Password: " + vm.password);
@@ -24,11 +26,29 @@ angular.module('myApp.view1', ['ngRoute'])
             ).then(
                 function onSuccess(response) {
                     console.log(response.data.token);
+                    TokenStorage.store(response.data.token);
                 },
-                function onFailure(data) {
-                    console.log(data);
+                function onFailure(response) {
+                    console.log(response);
                 }
             )
+        }
+
+        function testApi() {
+
+            $http.get("http://localhost:8888/api/helloWorld").then(
+                function onSuccess(response) {
+                    console.log(response.data);
+                },
+                function onFailure(response) {
+                    console.log(response);
+                }
+            )
+
+        }
+
+        function logout() {
+            TokenStorage.clear();
         }
 
     }]);
