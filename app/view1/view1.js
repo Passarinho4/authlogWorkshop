@@ -16,6 +16,8 @@ angular.module('myApp.view1', ['ngRoute'])
         vm.credentialsLogin = credentialsLogin;
         vm.logout = logout;
         vm.testApi = testApi;
+        vm.testSecureApi = testSecureApi;
+
 
         function credentialsLogin() {
             alert("Login: " + vm.login + " Password: " + vm.password);
@@ -37,6 +39,19 @@ angular.module('myApp.view1', ['ngRoute'])
         function testApi() {
 
             $http.get("http://localhost:8888/api/helloWorld").then(
+                function onSuccess(response) {
+                    console.log(response.data);
+                },
+                function onFailure(response) {
+                    console.log(response);
+                }
+            )
+
+        }
+
+        function testSecureApi() {
+
+            $http.get("http://localhost:8888/api/secureHelloWorld").then(
                 function onSuccess(response) {
                     console.log(response.data);
                 },
